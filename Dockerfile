@@ -5,7 +5,7 @@ LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
 RUN set -xe && \
     apk update && apk upgrade && \
     apk add --no-cache --virtual=run-deps \
-        apache2-utils curl python3 py3-bcrypt py3-cffi
+        apache2-utils curl git python3 py3-bcrypt py3-cffi
 
 # Add s6 overlay
 # Note: Tweak this line if you're running anything other than x86 AMD64 (64-bit)
