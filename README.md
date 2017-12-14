@@ -1,5 +1,5 @@
 # docker-radicale
-The Radicale CalDAV/CardDAV server as a Docker image.
+The Radicale CalDAV/CardDAV server as a Docker container.
 
 ## Quickstart
 Create the radicale data directory containing a minimal configuraion. We assume the directory _/srv/radicale_.
@@ -8,7 +8,8 @@ Minimal configuration _/srv/radicale/radicale.ini_:
 ```ini
 [auth]
 type = htpasswd
-htpasswd_filename = /srv/radicale/users
+# note: that's a path inside the container
+htpasswd_filename = /var/radicale/users
 # encryption method used in the htpasswd file
 htpasswd_encryption = bcrypt
 
@@ -16,7 +17,7 @@ htpasswd_encryption = bcrypt
 hosts = 0.0.0.0:8000
 
 [storage]
-filesystem_folder = /srv/radicale/collections
+filesystem_folder = /var/radicale/collections
 ```
 
 Run the docker image, and connect it to the HTTP port 80:
@@ -27,11 +28,11 @@ docker run  -v /srv/radicale:/var/radicale -p80:8000  -n radicale xlrl/radicale
 Create some users:
 ```shell
 # Create a new htpasswd file with the user "user1"
-docker exec radicale htpasswd -B -c /var/radicale/users user1
+docker exec -ti radicale htpasswd -B -c /var/radicale/users user1
 New password:
 Re-type new password:
 # Add another user
-docker exec radicale htpasswd -B -c /var/radicale/users user2
+docker exec -ti radicale htpasswd -B -c /var/radicale/users user2
 New password:
 Re-type new password:
 ```
