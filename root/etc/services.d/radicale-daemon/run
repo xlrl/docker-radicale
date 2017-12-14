@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+while true; do
+  cd /var/radicale
+  exec s6-setuidgid radicale python3 -m radicale --config=/var/radicale/config.ini
+  sleep 5m
+done

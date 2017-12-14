@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv sh
+cd /srv && ./setup-radicale.sh
