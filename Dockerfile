@@ -20,9 +20,7 @@ RUN set -xe && \
 # Add user radicale
 RUN adduser -D -h /var/radicale -s /bin/false -u 1000 radicale radicale && \
     mkdir -p /var/radicale && \
-    chown radicale.radicale /var/radicale && \
-    su radicale git config --global user.name radicale && \
-    su radicale git config --global user.email radicale@localhost
+    chown radicale.radicale /var/radicale
 
 # Copy root file system
 COPY root /
