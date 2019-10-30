@@ -12,7 +12,7 @@ RUN set -xe && \
 RUN curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar xvzf - -C /
 
 RUN set -xe && \
-    pip3 install radicale passlib bcrypt
+    pip3 install bcrypt passlib pytz radicale
 
 RUN set -xe && \
     apk del --no-cache --progress --purge curl
