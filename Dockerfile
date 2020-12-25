@@ -1,11 +1,11 @@
-FROM library/alpine:3.7
+FROM library/alpine:3.12
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
 RUN set -xe && \
     apk update && apk upgrade && \
     apk add --no-cache --virtual=run-deps \
-    apache2-utils curl git python3 py3-bcrypt py3-cffi
+    apache2-utils curl git python3 py3-bcrypt py3-cffi py3-pip
 
 # Add s6 overlay
 # Note: Tweak this line if you're running anything other than x86 AMD64 (64-bit)
@@ -15,7 +15,7 @@ RUN set -xe && \
     pip3 install bcrypt passlib pytz radicale
 
 RUN set -xe && \
-    apk del --no-cache --progress --purge curl
+    apk del --no-cache --progress --purge curl py3-pip
 
 # Add user radicale
 RUN adduser -D -h /var/radicale -s /bin/false -u 1000 radicale radicale && \
