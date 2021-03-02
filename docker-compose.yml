@@ -1,0 +1,16 @@
+version: '3.8'
+
+services: 
+  radicale:
+    build: .
+    container_name: radicale
+    environment: 
+      - GIT_REPOSITORY=https://user:password@github.com/user/repo
+      - GIT_USERNAME=username
+      - GIT_EMAIL=usermail@mail.com
+      - RADICALE_USER=username
+      - RADICALE_PASS=userpassword
+    ports: 
+      - "8000:8000"
+    volumes: 
+      - /tmp/radicale:/var/radicale

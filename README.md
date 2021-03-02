@@ -42,7 +42,34 @@ be presented with the Radicale login.
 
 ## Configuration using docker-compose
 
-__TODO__
+To launch your container with docker-compose you can use this sample :
+```
+version: '3.8'
+
+services: 
+  radicale:
+    build: .
+    container_name: radicale
+    environment: 
+      - GIT_REPOSITORY=https://user:password@github.com/user/repo
+      - GIT_USERNAME=username
+      - GIT_EMAIL=usermail@mail.com
+      - RADICALE_USER=username
+      - RADICALE_PASS=userpassword
+    ports: 
+      - "8000:8000"
+    volumes: 
+      - /tmp/radicale:/var/radicale
+```
+Environment variables :
+|Variable|Descriptions|
+|------|------|
+|GIT_REPOSITORY| Your git repo with your username or your password if it's a private repo |
+|GIT_USERNAME|Your name for the git signature|
+|GIT_EMAIL|Your mail for the git signature|
+|RADICALE_USER|Your radicale user|
+|RADICALE_PASS|The password for your user|
+
 
 ## Versioning
 Version the changes to your __radicale__ data your changes using __GIT__.

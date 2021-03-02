@@ -1,2 +1,17 @@
 #!/usr/bin/with-contenv sh
+
+# Clone Git repository if enabled (Thanks to tomsquest)
+if [ -n "$GIT_REPOSITORY" ] && [ -n "$GIT_USERNAME" ] && [ -n "$GIT_EMAIL" ]; then
+    echo "Setup: git configs enabled"
+    git clone "$GIT_REPOSITORY" /var/radicale/collections
+    git config --system user.name "$GIT_USERNAME"
+    git config --system user.email "$GIT_EMAIL"
+fi
+echo "Setup: start radicale setup"
 cd /srv && ./setup-radicale.sh
+
+# Check if they are user to create 
+if [ -n "$RADICALE_USER" ] && [ -n "$RADICALE_PASS" ]; then
+    echo "Setup: add user $RADICALE_USER"
+    htpasswd -B -b -c /var/radicale/users "$RADICALE_USER" "$RADICALE_PASS"
+fi
