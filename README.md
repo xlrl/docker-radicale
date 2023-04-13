@@ -59,7 +59,7 @@ services:
     ports: 
       - "8000:8000"
     volumes: 
-      - /tmp/radicale:/var/radicale
+      - /srv/radicale:/var/radicale
 ```
 Environment variables :
 |Variable|Descriptions|
