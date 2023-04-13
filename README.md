@@ -59,7 +59,7 @@ services:
     ports: 
       - "8000:8000"
     volumes: 
-      - /tmp/radicale:/var/radicale
+      - /srv/radicale:/var/radicale
 ```
 Environment variables :
 |Variable|Descriptions|
@@ -74,7 +74,7 @@ Environment variables :
 ## Versioning
 Version the changes to your __radicale__ data your changes using __GIT__.
 
-Create a _.gitignore_ file in _srv/radicale/data:
+Create a _.gitignore_ file in _srv/radicale/data_:
 ```
 .Radicale.cache
 .Radicale.lock
