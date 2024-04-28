@@ -4,6 +4,7 @@ FROM library/alpine:$ALPINE_VERSION
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
+# i've tested it with my raspberry pi, you can change the architecture as you wish
 ENV ARCH=arm
 #ARG OVERLAY_VERSION=v2.2.0.3
 ENV S6_OVERLAY_VERSION="3.1.6.2"
@@ -16,7 +17,7 @@ RUN set -xe && \
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-arm.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-arm.tar.xz
 
 
