@@ -4,8 +4,8 @@
 if [ -n "$GIT_REPOSITORY" ] && [ -n "$GIT_USERNAME" ] && [ -n "$GIT_EMAIL" ]; then
     echo "Setup: git configs enabled"
     git clone "$GIT_REPOSITORY" /var/radicale/collections
-    git config --system user.name "$GIT_USERNAME"
-    git config --system user.email "$GIT_EMAIL"
+    git config --global user.name "$GIT_USERNAME"
+    git config --global user.email "$GIT_EMAIL"
 fi
 echo "Setup: start radicale setup"
 cd /srv && ./setup-radicale.sh
