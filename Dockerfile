@@ -1,18 +1,27 @@
-FROM library/alpine:3.13.2
+ARG ALPINE_VERSION=3.19.1
+
+FROM library/alpine:$ALPINE_VERSION
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
+
+ENV ARCH=arm
+#ARG OVERLAY_VERSION=v2.2.0.3
+ENV S6_OVERLAY_VERSION="3.1.6.2"
 
 RUN set -xe && \
     apk update && apk upgrade && \
     apk add --no-cache --virtual=run-deps \
-    apache2-utils curl git python3 py3-bcrypt py3-cffi py3-pip
+    apache2-utils curl git python3 py3-bcrypt py3-cffi py3-pip openssh-client
 
-# Add s6 overlay
-# Note: Tweak this line if you're running anything other than x86 AMD64 (64-bit)
-RUN curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar xvzf - -C /
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-arm.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-arm.tar.xz
+
 
 RUN set -xe && \
-    pip3 install bcrypt passlib pytz radicale
+    pip3 install --break-system-packages  bcrypt passlib pytz radicale
 
 RUN set -xe && \
     apk del --no-cache --progress --purge curl py3-pip
@@ -20,14 +29,21 @@ RUN set -xe && \
 # Add user radicale
 RUN adduser -D -h /var/radicale -s /bin/false -u 1000 radicale radicale && \
     mkdir -p /var/radicale && \
-    chown radicale.radicale /var/radicale
+    chown radicale.radicale /var/radicale && \
+    # Clean
+    rm -rf /var/cache/apk/*
+
+USER radicale
 
 # Copy root file system
-COPY root /
+COPY --chown=radicale:radicale root /
+COPY --chown=radicale:radicale config.ini /var/
+RUN chmod u+x /etc/cont-init.d/99-radicale /etc/services.d/radicale-daemon/run
 
 # expose radicale port
 EXPOSE 8000
 
 VOLUME ["/var/radicale"]
+VOLUME ["/home/radicale/.ssh"]
 
 ENTRYPOINT ["/init"]
