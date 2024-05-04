@@ -1,4 +1,4 @@
-FROM library/alpine:3.13.2
+FROM library/alpine:3.19
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
@@ -12,7 +12,8 @@ RUN set -xe && \
 RUN curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar xvzf - -C /
 
 RUN set -xe && \
-    pip3 install bcrypt passlib pytz radicale
+    pip3 install --break-system-packages \
+    bcrypt passlib pytz radicale==3.1.9
 
 RUN set -xe && \
     apk del --no-cache --progress --purge curl py3-pip
