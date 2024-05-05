@@ -1,6 +1,4 @@
-ARG ALPINE_VERSION=3.19.1
-
-FROM library/alpine:$ALPINE_VERSION
+FROM library/alpine:3.19
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
@@ -20,7 +18,8 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz
 
 
 RUN set -xe && \
-    pip3 install --break-system-packages  bcrypt passlib pytz radicale
+    pip3 install --break-system-packages \
+    bcrypt passlib pytz radicale==3.1.9
 
 RUN set -xe && \
     apk del --no-cache --progress --purge curl py3-pip
