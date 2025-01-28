@@ -12,6 +12,10 @@ cd /srv && ./setup-radicale.sh
 
 # Check if they are user to create 
 if [ -n "$RADICALE_USER" ] && [ -n "$RADICALE_PASS" ]; then
-    echo "Setup: add user $RADICALE_USER"
-    htpasswd -B -b -c /var/radicale/users "$RADICALE_USER" "$RADICALE_PASS"
+    if [ -e /var/radicale/users ]; then
+        echo "Setup: skip adding $RADICALE_USER, password file exists"
+    else
+        echo "Setup: add user $RADICALE_USER"
+        htpasswd -B -b -c /var/radicale/users "$RADICALE_USER" "$RADICALE_PASS"
+    fi 
 fi
