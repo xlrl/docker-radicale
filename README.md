@@ -37,7 +37,7 @@ docker exec -ti radicale htpasswd -B -c /var/radicale/users user1
 New password:
 Re-type new password:
 # Add another user
-docker exec -ti radicale htpasswd -B -c /var/radicale/users user2
+docker exec -ti radicale htpasswd -B /var/radicale/users user2
 New password:
 Re-type new password:
 ```
