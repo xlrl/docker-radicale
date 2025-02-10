@@ -35,7 +35,8 @@ USER radicale
 
 # Copy root file system
 COPY --chown=radicale:radicale root /
-COPY --chown=radicale:radicale config.ini /var/
+COPY --chown=radicale:radicale config.ini /var/radicale/
+
 RUN chmod u+x /etc/cont-init.d/99-radicale /etc/services.d/radicale-daemon/run
 
 # expose radicale port
