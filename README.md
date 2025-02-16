@@ -2,6 +2,8 @@
 
 The Radicale CalDAV/CardDAV server as a Docker container.
 
+For changes take look at [Changelog.md](Changelog.md).
+
 ## Quickstart
 
 Create the radicale data directory containing a minimal configuraion. We assume the directory _/srv/radicale/data_.
