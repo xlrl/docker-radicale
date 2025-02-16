@@ -2,20 +2,10 @@ FROM library/alpine:3.19
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
-ENV ARCH=x86_64
-ENV S6_OVERLAY_VERSION="3.1.6.2"
-
 RUN set -xe && \
     apk update && apk upgrade && \
     apk add --no-cache --virtual=run-deps \
     apache2-utils curl git python3 py3-bcrypt py3-cffi py3-pip openssh-client
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
-RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.xz /tmp
-RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz
-
 
 RUN set -xe && \
     pip3 install --break-system-packages \
@@ -37,12 +27,12 @@ USER radicale
 COPY --chown=radicale:radicale root /
 COPY --chown=radicale:radicale config.ini /var/radicale/
 
-RUN chmod u+x /etc/cont-init.d/99-radicale /etc/services.d/radicale-daemon/run
+RUN chmod u+x /srv/run-radicale.sh
 
-# expose radicale port
+# Expose radicale port
 EXPOSE 8000
 
 VOLUME ["/var/radicale"]
 VOLUME ["/home/radicale/.ssh"]
 
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["/srv/run-radicale.sh"]
