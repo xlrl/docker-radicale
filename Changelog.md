@@ -1,8 +1,11 @@
 # Changelog
 
-## Version NEXT (in development)
+## Version 3.4.1 (in development)
 
 - Fix location of `config.ini`
+- Upgrade to Alpine Linux v3.21.3
+- Upgrade to Radicale v3.4.1
+- Remove s6 overlay with simple setup/run script
 
 ## Version 3.1.9-2 (2025-01-30)
 
