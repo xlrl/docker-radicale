@@ -1,4 +1,4 @@
-FROM library/alpine:3.19
+FROM library/alpine:3.21.3
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
@@ -17,7 +17,7 @@ RUN set -xe && \
 # Add user radicale
 RUN adduser -D -h /var/radicale -s /bin/false -u 1000 radicale radicale && \
     mkdir -p /var/radicale && \
-    chown radicale.radicale /var/radicale && \
+    chown radicale:radicale /var/radicale && \
     # Clean
     rm -rf /var/cache/apk/*
 

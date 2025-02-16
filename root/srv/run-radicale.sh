@@ -10,7 +10,7 @@ if [ -n "$GIT_REPOSITORY" ] && [ -n "$GIT_USERNAME" ] && [ -n "$GIT_EMAIL" ]; th
 fi
 
 echo "Setup: start radicale setup"
-chown radicale.radicale -R /var/radicale
+chown radicale:radicale -R /var/radicale
 
 # Check if they are user to create 
 if [ -n "$RADICALE_USER" ] && [ -n "$RADICALE_PASS" ]; then
