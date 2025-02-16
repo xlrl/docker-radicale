@@ -9,7 +9,7 @@ RUN set -xe && \
 
 RUN set -xe && \
     pip3 install --break-system-packages \
-    bcrypt passlib pytz radicale==3.1.9
+    bcrypt passlib pytz radicale==3.4.1
 
 RUN set -xe && \
     apk del --no-cache --progress --purge curl py3-pip
