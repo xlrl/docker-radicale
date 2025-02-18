@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 3.4.1 (in development)
+## Version 3.4.1 (2025-02-18)
 
 - Fix location of `config.ini`
 - Upgrade to Alpine Linux v3.21.3
