@@ -2,24 +2,14 @@ version: '3.8'
 
 services:
   radicale:
-    build:
-      context: .
-    container_name: radicale
     read_only: true
     env_file:
     - .env
     environment:
-    - S6_READ_ONLY_ROOT=1
     - GIT_AUTHOR_EMAIL=$GIT_EMAIL
     - GIT_AUTHOR_NAME=$GIT_USERNAME
     ports:
     - "8000:8000"
-    security_opt:
-    - no-new-privileges:true
-    tmpfs:
-    - /var/radicale:uid=1000,gid=1000
-    - /var/run:uid=1000,gid=1000,exec
-    - /tmp:uid=1000,gid=1000
     volumes:
     # needed for ssh authentication with pub/private key
     - .ssh:/var/radicale/.ssh
