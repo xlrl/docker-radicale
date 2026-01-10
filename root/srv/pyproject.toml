@@ -1,0 +1,9 @@
+[project]
+name = "radicale-server"
+version = "0.1.0"
+description = "This is the radicale server instance"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "radicale==3.6.0",
+]
