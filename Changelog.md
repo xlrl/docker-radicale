@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.6.0 (2026-01-10)
+
+- Upgrade to Radicale v3.6.0
+- Migrate from PIP to Astral/UV
+
 ## Version 3.5.7 (2025-10-12)
 
 - Upgrade to Radicale v3.5.7
