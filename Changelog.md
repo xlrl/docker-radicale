@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 3.5.7 (2025-10-12)
+
+- Upgrade to Radicale v3.5.7
+- Upgrade to Alpine Linux v3.22.2
+
+## Version 3.5.3 (2025-05-11)
+
+Note: the Radicale version did not change, this is a bug!
+
 ## Version 3.4.1 (2025-02-18)
 
 - Fix location of `config.ini`
