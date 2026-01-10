@@ -52,8 +52,6 @@ be presented with the Radicale login.
 To launch your container with docker-compose you can use this sample :
 
 ```yaml
-version: '3.8'
-
 services:
   radicale:
     build: .
