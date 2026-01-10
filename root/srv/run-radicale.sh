@@ -26,4 +26,4 @@ echo "Setup: done"
 echo "Run radicale"
 
 cd /var/radicale
-python3 -m radicale --config=/var/radicale/config.ini
+uv run --directory /srv python -m radicale --config=/var/radicale/config.ini
