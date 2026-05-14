@@ -162,15 +162,6 @@ wheels = [
 ]
 
 [[package]]
-name = "packaging"
-version = "25.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f", size = 165727, upload-time = "2025-04-19T11:48:59.673Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484", size = 66469, upload-time = "2025-04-19T11:48:57.875Z" },
-]
-
-[[package]]
 name = "passlib"
 version = "1.7.4"
 source = { registry = "https://pypi.org/simple" }
@@ -211,19 +202,18 @@ wheels = [
 
 [[package]]
 name = "radicale"
-version = "3.6.0"
+version = "3.7.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "defusedxml" },
     { name = "libpass" },
-    { name = "packaging" },
     { name = "pika" },
     { name = "requests" },
     { name = "vobject" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/46/39/6ff564202318c1e4f8f12c8ba8fc93b9eb208df287b050c9796e9769229a/radicale-3.6.0.tar.gz", hash = "sha256:23820c71f989cac3e9eeb03fb39c7092b088fe8db5d6f3d3a739f0bb99e87cf8", size = 190386, upload-time = "2026-01-10T09:46:02.639Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/b4/8e9fef4dd42061219e90ef3fe57dc63193119715a5a51d557135e330f2a9/radicale-3.7.3.tar.gz", hash = "sha256:dc4f2354045443e36e67950586ac105c6d48c4d48ad10ddfc2c6f32aafea0600", size = 244753, upload-time = "2026-05-14T06:55:54.754Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/37/e3/bfc59cd3a6427047275b54be70b9c058c0a6f4762df545f6d916f5646ca3/radicale-3.6.0-py3-none-any.whl", hash = "sha256:71ba2d3a4a321ca77ac15715903ee94e9db952469cdd12ce0e4c858e86295f64", size = 210062, upload-time = "2026-01-10T09:46:00.79Z" },
+    { url = "https://files.pythonhosted.org/packages/28/ab/34391e6f4f79ef9b22b9a6be4de90092d05ccb18ee562e3b22daa9100140/radicale-3.7.3-py3-none-any.whl", hash = "sha256:0760d539c1da8c346ed3aacfdabe7115527dadcdc6ef440b1e9569abadf9646f", size = 287440, upload-time = "2026-05-14T06:55:52.914Z" },
 ]
 
 [[package]]
@@ -242,7 +232,7 @@ requires-dist = [
     { name = "bcrypt" },
     { name = "passlib" },
     { name = "pytz" },
-    { name = "radicale", specifier = "==3.6.0" },
+    { name = "radicale", specifier = "==3.7.3" },
 ]
 
 [[package]]
