@@ -1,4 +1,4 @@
-FROM library/alpine:3.22.2
+FROM library/alpine:3.23.4
 LABEL description="The Radicale CalDAV/CardDAV server as a Docker image." \
     maintainer="Alexander Mueller <XelaRellum@web.de>"
 
