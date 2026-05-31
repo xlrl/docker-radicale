@@ -4,7 +4,6 @@ Automatically update the Dockerfile to the latest base image
 """
 
 from argparse import ArgumentParser
-import json
 import re
 import requests
 
@@ -44,48 +43,34 @@ def update_alpine(t: str) -> str:
     """
     Find the latest Alpine Linux tag and update the Dockerfile.
     """
-    names = {}
     log("Get latest Alpine Linux image tag...")
-    for page in range(1, 20):
-        url = f"https://hub.docker.com/v2/repositories/library/alpine/tags?page_size=100&page={page}"
-        resp = requests.get(url, timeout=5000)
+    latest_version: tuple[int, int, int] | None = None
+    latest_tag_name = ""
 
-        if resp.status_code == 404:
-            break  # seems as we don't have more pages
+    url: str | None = "https://hub.docker.com/v2/repositories/library/alpine/tags?page_size=100"
+    while url:
+        resp = requests.get(url, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
 
-        assert resp.status_code == 200, f"Invalid status code {resp.status_code}"
-
-        # print(resp.text)
-        # with open("foo.json", "w") as file:
-        #    file.write(resp.text)
-        j = json.loads(resp.text)
-        for result in j["results"]:
-            name = result["name"]
-
+        for result in data["results"]:
             log(".")
+            version = parse_tag_version(result["name"])
+            if version is not None and (latest_version is None or version > latest_version):
+                latest_version = version
+                latest_tag_name = result["name"]
 
-            # print(name)
+        url = data.get("next")
 
-            tag_version = parse_tag_version(name)
-            # print(tag_version)
-            if tag_version is None:
-                continue
+    assert latest_tag_name, "No semver tag found in Alpine tags response"
+    log(f"{latest_tag_name} ")
 
-            names[tag_version] = name
-
-    latest_version = sorted(names.keys())[-1]
-    latest_tag_name = names[latest_version]
-    log(latest_tag_name)
-    log(" ")
-
-    m = re.search(r"FROM library/alpine:([^\s]+)", t)
+    m = re.search(r"FROM [^\s]*alpine:([^\s]+)", t)
     assert m is not None
     current_tag_name = m.group(1)
     current_version = parse_tag_version(current_tag_name)
 
-    if current_version is None:
-        pass
-    elif latest_version < current_version:
+    if current_version is not None and latest_version is not None and latest_version < current_version:
         log(
             f"WARNING: current tag {current_tag_name} is newer than latest {latest_tag_name} "
         )
