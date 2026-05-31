@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.7.4 (2026-05-31)
+
+- Upgrade to Radicale v3.7.4
+- Fix and refactor `update_dockerfile.py` Alpine tag lookup
+
 ## Version 3.6.0 (2026-01-10)
 
 - Upgrade to Radicale v3.6.0
