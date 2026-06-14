@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.7.5 (2026-06-14)
+
+- Upgrade to Radicale v3.7.5
+- Upgrade to Alpine Linux v3.24.0
+
 ## Version 3.7.4 (2026-05-31)
 
 - Upgrade to Radicale v3.7.4
