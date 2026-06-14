@@ -218,7 +218,7 @@ wheels = [
 
 [[package]]
 name = "radicale"
-version = "3.7.3"
+version = "3.7.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "defusedxml" },
@@ -227,14 +227,14 @@ dependencies = [
     { name = "requests" },
     { name = "vobject" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/b4/8e9fef4dd42061219e90ef3fe57dc63193119715a5a51d557135e330f2a9/radicale-3.7.3.tar.gz", hash = "sha256:dc4f2354045443e36e67950586ac105c6d48c4d48ad10ddfc2c6f32aafea0600", size = 244753, upload-time = "2026-05-14T06:55:54.754Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/db/93da1d069ec31f6150e896d8b0af9a264b2509630eb3f437561d25f139d0/radicale-3.7.5.tar.gz", hash = "sha256:a6b45128ac6d84e397e78e9340abc2906c9037cd5b65641f02578eda238fa0b7", size = 254813, upload-time = "2026-06-14T08:08:57.153Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/28/ab/34391e6f4f79ef9b22b9a6be4de90092d05ccb18ee562e3b22daa9100140/radicale-3.7.3-py3-none-any.whl", hash = "sha256:0760d539c1da8c346ed3aacfdabe7115527dadcdc6ef440b1e9569abadf9646f", size = 287440, upload-time = "2026-05-14T06:55:52.914Z" },
+    { url = "https://files.pythonhosted.org/packages/f2/50/4ce4e10273a9371ad175241c06ac22c76d4278ac4087b8fc05315724bf16/radicale-3.7.5-py3-none-any.whl", hash = "sha256:ee766104a168f1357013ac84b241e981f45a3ffee1a6442827d025e0e561b78e", size = 295745, upload-time = "2026-06-14T08:08:55.287Z" },
 ]
 
 [[package]]
 name = "radicale-server"
-version = "0.1.0"
+version = "3.7.5"
 source = { virtual = "." }
 dependencies = [
     { name = "bcrypt" },
@@ -248,7 +248,7 @@ requires-dist = [
     { name = "bcrypt" },
     { name = "passlib" },
     { name = "pytz" },
-    { name = "radicale", specifier = "==3.7.3" },
+    { name = "radicale", specifier = "==3.7.5" },
 ]
 
 [[package]]
