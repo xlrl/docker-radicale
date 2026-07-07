@@ -8,5 +8,5 @@ dependencies = [
     "bcrypt",
     "passlib",
     "pytz",
-    "radicale==3.7.5",
+    "radicale==3.7.6",
 ]
