@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.7.7 (2026-07-23)
+
+- Upgrade to Radicale v3.7.7
+- Add `build.sh` to build and tag the image with podman
+- `update_dockerfile.py` now also updates the Radicale version
+
 ## Version 3.7.6 (2026-07-07)
 
 - Upgrade to Radicale v3.7.5
