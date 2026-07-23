@@ -1,6 +1,6 @@
 [project]
 name = "radicale-server"
-version = "3.7.6"
+version = "3.7.7"
 description = "This is the radicale server instance"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -8,5 +8,5 @@ dependencies = [
     "bcrypt",
     "passlib",
     "pytz",
-    "radicale==3.7.6",
+    "radicale==3.7.7",
 ]
