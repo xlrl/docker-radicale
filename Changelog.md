@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.7.8 (2026-08-07)
+
+- Upgrade to Radicale v3.7.8
+
 ## Version 3.7.7 (2026-07-23)
 
 - Upgrade to Radicale v3.7.7
