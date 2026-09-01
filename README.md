@@ -77,6 +77,9 @@ Environment variables :
 |GIT_EMAIL|Your mail for the git signature|
 |RADICALE_USER|Your radicale user|
 |RADICALE_PASS|The password for your user|
+|RADICALE_NO_SYNC|Set to a non-empty value to prevent dependency synchronization at startup. Dependencies must be installed during the image build.|
+
+For containers without internet access, set `RADICALE_NO_SYNC=1` to use the dependencies installed during the image build without checking for updates at startup.
 
 ## Versioning
 
