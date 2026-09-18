@@ -22,6 +22,11 @@ RUN adduser -D -h /var/radicale -s /bin/false -u 1000 radicale radicale && \
     # Clean
     rm -rf /var/cache/apk/*
 
+# Keep uv-managed Python outside the Radicale data volume.
+RUN mkdir -p /opt/uv/python && \
+    chown -R radicale:radicale /opt/uv
+ENV UV_PYTHON_INSTALL_DIR=/opt/uv/python
+
 USER radicale
 
 # Copy root file system

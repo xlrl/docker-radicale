@@ -26,8 +26,4 @@ echo "Setup: done"
 echo "Run radicale"
 
 cd /var/radicale
-if [ -n "$RADICALE_NO_SYNC" ]; then
-    uv run --no-sync --directory /srv python -m radicale --config=/var/radicale/config.ini
-else
-    uv run --directory /srv python -m radicale --config=/var/radicale/config.ini
-fi
+uv run --no-sync --directory /srv python -m radicale --config=/var/radicale/config.ini
