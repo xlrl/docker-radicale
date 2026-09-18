@@ -1,6 +1,6 @@
 [project]
 name = "docker-radicale"
-version = "3.7.8"
+version = "3.8.0"
 description = "docker-radicale (Python support scripts for this repository)"
 readme = "README.md"
 requires-python = ">=3.12"
