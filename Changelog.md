@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.8.0 (2026-09-18)
+
+- Upgrade to Radicale v3.8.0
+- Upgrade to Alpine Linux v3.24.2
+- Fixed: the .venv was synced to the mounted directory
+
 ## Version 3.7.8 (2026-08-07)
 
 - Upgrade to Radicale v3.7.8
