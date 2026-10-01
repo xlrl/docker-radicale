@@ -80,6 +80,17 @@ Environment variables :
 
 Dependencies are installed during the image build, so no network access is required at startup.
 
+## Building
+
+Build a multi-arch image (`linux/amd64`, `linux/arm64`) with podman:
+
+```shell
+./build-image.sh
+PLATFORMS=linux/amd64,linux/arm64,linux/arm/v7 ./build-image.sh
+```
+
+Cross builds need `qemu-user-static`.
+
 ## Versioning
 
 Version the changes to your __radicale__ data your changes using __GIT__.
