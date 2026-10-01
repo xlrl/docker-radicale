@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.8.1 (2026-10-01)
+
+- Upgrade to Radicale v3.8.1
+- Rename `build.sh` to `build-image.sh`, now builds a multi-arch image (amd64, arm64)
+
 ## Version 3.8.0 (2026-09-18)
 
 - Upgrade to Radicale v3.8.0
