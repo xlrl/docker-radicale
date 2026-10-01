@@ -3,6 +3,7 @@
 ## Version 3.8.1 (2026-10-01)
 
 - Upgrade to Radicale v3.8.1
+- Upgrade urllib3 to v2.8.0 (GHSA-8988-9cw3-xx77, GHSA-vxq7-64xx-v4gw)
 - Rename `build.sh` to `build-image.sh`, now builds a multi-arch image (amd64, arm64)
 
 ## Version 3.8.0 (2026-09-18)
