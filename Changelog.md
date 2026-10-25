@@ -2,7 +2,9 @@
 
 ## Version 3.9.0-1 (2026-10-25)
 
-- Bump certifi from 2026.4.22 to 2026.10.19
+- Bump certifi from 2026.4.22 to 2026.10.23 (also in the image, Dependabot only bumped the dev lock)
+- Drop the `passlib` dependency, which conflicted with Radicale's `libpass`, and the redundant `pytz`
+- Use `radicale[bcrypt]` instead of a separate `bcrypt` dependency
 
 ## Version 3.9.0 (2026-10-25)
 
