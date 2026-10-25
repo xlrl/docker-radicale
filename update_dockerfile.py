@@ -122,7 +122,7 @@ def update_radicale(t: str) -> str:
     latest_version_str = latest_tag_name.lstrip("v")
     log(f"{latest_tag_name} ")
 
-    m = re.search(r'"radicale==([^"]+)"', t)
+    m = re.search(r'"radicale(?:\[[^\]]*\])?==([^"]+)"', t)
     assert m is not None
     current_tag_name = m.group(1)
     current_version = parse_tag_version(current_tag_name)
@@ -241,7 +241,7 @@ def main():
     # sync versions with the radicale pin, also repairs drift
     with open("root/srv/pyproject.toml", "r", encoding="utf-8") as file:
         t = file.read()
-    m = re.search(r'"radicale==([^"]+)"', t)
+    m = re.search(r'"radicale(?:\[[^\]]*\])?==([^"]+)"', t)
     assert m is not None
     new_version = m.group(1)
     update_own_version("pyproject.toml", new_version)
