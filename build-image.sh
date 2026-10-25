@@ -13,7 +13,7 @@ set -eu
 
 cd "$(dirname "$0")"
 
-version=$(sed -n 's/^version = "\(.*\)"/\1/p' pyproject.toml)
+version=$(cat VERSION)
 platforms=${PLATFORMS:-linux/amd64,linux/arm64}
 
 image=docker.io/xlrl/radicale
