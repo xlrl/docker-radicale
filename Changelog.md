@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.9.0-1 (2026-10-25)
+
+- Bump certifi from 2026.4.22 to 2026.10.19
+
 ## Version 3.9.0 (2026-10-25)
 
 - Upgrade to Radicale v3.9.0
