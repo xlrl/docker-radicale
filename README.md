@@ -1,5 +1,10 @@
 # docker-radicale
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/xlrl/radicale)](https://hub.docker.com/r/xlrl/radicale)
+[![Radicale](https://img.shields.io/badge/Radicale-3.9.0-blue)](https://radicale.org)
+[![Alpine](https://img.shields.io/badge/Alpine-3.24-0D597F?logo=alpinelinux&logoColor=white)](https://hub.docker.com/_/alpine)
+[![License: MIT](https://img.shields.io/github/license/xlrl/docker-radicale)](LICENSE)
+
 The Radicale CalDAV/CardDAV server as a Docker container.
 
 For changes take look at [Changelog.md](Changelog.md).
@@ -70,13 +75,13 @@ services:
 
 Environment variables :
 
-|Variable|Descriptions|
-|------|------|
-|GIT_REPOSITORY| Your git repo with your username or your password if it's a private repo |
-|GIT_USERNAME|Your name for the git signature|
-|GIT_EMAIL|Your mail for the git signature|
-|RADICALE_USER|Your radicale user|
-|RADICALE_PASS|The password for your user|
+| Variable       | Descriptions                                                             |
+| -------------- | ------------------------------------------------------------------------ |
+| GIT_REPOSITORY | Your git repo with your username or your password if it's a private repo |
+| GIT_USERNAME   | Your name for the git signature                                          |
+| GIT_EMAIL      | Your mail for the git signature                                          |
+| RADICALE_USER  | Your radicale user                                                       |
+| RADICALE_PASS  | The password for your user                                               |
 
 Dependencies are installed during the image build, so no network access is required at startup.
 
@@ -93,7 +98,7 @@ Cross builds need `qemu-user-static`.
 
 ## Versioning
 
-Version the changes to your __radicale__ data your changes using __GIT__.
+Version the changes to your **radicale** data your changes using **GIT**.
 
 Create a _.gitignore_ file in _srv/radicale/data_:
 
@@ -103,7 +108,7 @@ Create a _.gitignore_ file in _srv/radicale/data_:
 .Radicale.tmp-*
 ```
 
-Configure the __GIT__ hook in _/srv/radicale/data/config.ini_:
+Configure the **GIT** hook in _/srv/radicale/data/config.ini_:
 
 ```ini
 [storage]
@@ -111,7 +116,7 @@ filesystem_folder = /var/radicale/collections
 hook = git add -A && (git diff --cached --quiet || git commit -m "Changes by "%(user)s)
 ```
 
-Initialize the __GIT__ repository:
+Initialize the **GIT** repository:
 
 ```shell
 docker@myhost ~ # cd /srv/radicale/data
@@ -124,3 +129,4 @@ docker@myhost /srv/radicale/data # git commit -m "Initial commit."
  create mode 100644 .gitignore
  create mode 100644 config.ini
  create mode 100644 users
+```

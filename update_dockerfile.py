@@ -141,6 +141,21 @@ def update_radicale(t: str) -> str:
     return t
 
 
+def update_readme(t: str, radicale_version: str, dockerfile: str) -> str:
+    """
+    Sync README version badges with the radicale pin and the Dockerfile.
+    """
+    t = re.sub(
+        r"(badge/Radicale-)[0-9.]+(-)", r"\g<1>" + radicale_version + r"\g<2>", t
+    )
+
+    m = re.search(r"FROM [^\s]*alpine:([0-9]+[.][0-9]+)", dockerfile)
+    assert m is not None
+    t = re.sub(r"(badge/Alpine-)[0-9.]+(-)", r"\g<1>" + m.group(1) + r"\g<2>", t)
+
+    return t
+
+
 def patch_file(filepath: str, skip: bool, update_func) -> bool:
     """
     Read filepath, run update_func over its contents unless skip is set, and
@@ -234,6 +249,10 @@ def main():
 
     # image tag version, read by build-image.sh
     patch_file("VERSION", False, lambda _: new_version + "\n")
+
+    with open("Dockerfile", "r", encoding="utf-8") as file:
+        dockerfile = file.read()
+    patch_file("README.md", False, lambda r: update_readme(r, new_version, dockerfile))
 
     if radicale_changed:
         run_uv_lock("root/srv")
