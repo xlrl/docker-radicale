@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.9.0 (2026-10-25)
+
+- Upgrade to Radicale v3.9.0
+- Upgrade to Alpine Linux v3.24.3
+- `build-image.sh` reads the image version from `VERSION`
+
 ## Version 3.8.3 (2026-10-18)
 
 - Upgrade to Radicale v3.8.3
