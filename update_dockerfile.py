@@ -3,9 +3,10 @@
 Automatically update the Dockerfile to the latest base image
 """
 
-from argparse import ArgumentParser
 import re
 import subprocess
+from argparse import ArgumentParser
+
 import requests
 
 
@@ -48,7 +49,9 @@ def update_alpine(t: str) -> str:
     latest_version: tuple[int, int, int] | None = None
     latest_tag_name = ""
 
-    url: str | None = "https://hub.docker.com/v2/repositories/library/alpine/tags?page_size=100"
+    url: str | None = (
+        "https://hub.docker.com/v2/repositories/library/alpine/tags?page_size=100"
+    )
     while url:
         resp = requests.get(url, timeout=30)
         resp.raise_for_status()
@@ -57,7 +60,9 @@ def update_alpine(t: str) -> str:
         for result in data["results"]:
             log(".")
             version = parse_tag_version(result["name"])
-            if version is not None and (latest_version is None or version > latest_version):
+            if version is not None and (
+                latest_version is None or version > latest_version
+            ):
                 latest_version = version
                 latest_tag_name = result["name"]
 
@@ -71,7 +76,11 @@ def update_alpine(t: str) -> str:
     current_tag_name = m.group(1)
     current_version = parse_tag_version(current_tag_name)
 
-    if current_version is not None and latest_version is not None and latest_version < current_version:
+    if (
+        current_version is not None
+        and latest_version is not None
+        and latest_version < current_version
+    ):
         log(
             f"WARNING: current tag {current_tag_name} is newer than latest {latest_tag_name} "
         )
@@ -100,10 +109,10 @@ def update_radicale(t: str) -> str:
         for result in data:
             log(".")
             tag_name = result["name"]
-            version = parse_tag_version(
-                tag_name[1:] if tag_name.startswith("v") else tag_name
-            )
-            if version is not None and (latest_version is None or version > latest_version):
+            version = parse_tag_version(tag_name.removeprefix("v"))
+            if version is not None and (
+                latest_version is None or version > latest_version
+            ):
                 latest_version = version
                 latest_tag_name = tag_name
 
@@ -118,7 +127,11 @@ def update_radicale(t: str) -> str:
     current_tag_name = m.group(1)
     current_version = parse_tag_version(current_tag_name)
 
-    if current_version is not None and latest_version is not None and latest_version < current_version:
+    if (
+        current_version is not None
+        and latest_version is not None
+        and latest_version < current_version
+    ):
         log(
             f"WARNING: current tag {current_tag_name} is newer than latest {latest_version_str} "
         )
@@ -210,15 +223,19 @@ def main():
     radicale_changed = patch_file(
         "root/srv/pyproject.toml", args.keep_radicale_version, update_radicale
     )
-    if radicale_changed:
-        with open("root/srv/pyproject.toml", "r", encoding="utf-8") as file:
-            t = file.read()
-        m = re.search(r'"radicale==([^"]+)"', t)
-        assert m is not None
-        new_version = m.group(1)
-        update_own_version("pyproject.toml", new_version)
-        update_own_version("root/srv/pyproject.toml", new_version)
+    # sync versions with the radicale pin, also repairs drift
+    with open("root/srv/pyproject.toml", "r", encoding="utf-8") as file:
+        t = file.read()
+    m = re.search(r'"radicale==([^"]+)"', t)
+    assert m is not None
+    new_version = m.group(1)
+    update_own_version("pyproject.toml", new_version)
+    update_own_version("root/srv/pyproject.toml", new_version)
 
+    # image tag version, read by build-image.sh
+    patch_file("VERSION", False, lambda _: new_version + "\n")
+
+    if radicale_changed:
         run_uv_lock("root/srv")
         run_uv_lock(".")
 
