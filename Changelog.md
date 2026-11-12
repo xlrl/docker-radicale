@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.9.1 (2026-11-12)
+
+- Upgrade to Radicale v3.9.1
+- Upgrade to Alpine Linux v3.24.3
+- `build-image.sh` checks that QEMU emulation for foreign platforms is registered before building
+
 ## Version 3.9.0-1 (2026-10-25)
 
 - Bump certifi from 2026.4.22 to 2026.10.23 (also in the image, Dependabot only bumped the dev lock)
