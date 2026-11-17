@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.9.2 (2026-11-17)
+
+- Upgrade to Radicale v3.9.2
+
 ## Version 3.9.1 (2026-11-12)
 
 - Upgrade to Radicale v3.9.1

@@ -1,7 +1,7 @@
 # docker-radicale
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/xlrl/radicale)](https://hub.docker.com/r/xlrl/radicale)
-[![Radicale](https://img.shields.io/badge/Radicale-3.9.1-blue)](https://radicale.org)
+[![Radicale](https://img.shields.io/badge/Radicale-3.9.2-blue)](https://radicale.org)
 [![Alpine](https://img.shields.io/badge/Alpine-3.24-0D597F?logo=alpinelinux&logoColor=white)](https://hub.docker.com/_/alpine)
 [![License: MIT](https://img.shields.io/github/license/xlrl/docker-radicale)](LICENSE)
 
