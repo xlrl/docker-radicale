@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `build-image.sh` tags `localhost/xlrl/radicale`
+
 ## Version 3.9.2 (2026-11-17)
 
 - Upgrade to Radicale v3.9.2

@@ -87,7 +87,8 @@ Dependencies are installed during the image build, so no network access is requi
 
 ## Building
 
-Build a multi-arch image (`linux/amd64`, `linux/arm64`) with podman:
+Build a multi-arch image (`linux/amd64`, `linux/arm64`) with podman, tagged
+`localhost/xlrl/radicale:<version>` and `localhost/xlrl/radicale:latest`:
 
 ```shell
 ./build-image.sh

@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # Build the multi-arch radicale image using podman and tag it as
-# docker.io/xlrl/radicale:latest and docker.io/xlrl/radicale:<version>.
+# localhost/xlrl/radicale:latest and localhost/xlrl/radicale:<version>.
+# Never pushes; prints the push commands.
 #
 # Env:
 #   PLATFORMS  comma separated target platforms
@@ -65,7 +66,7 @@ check_emulation() {
 
 check_emulation "${platforms}"
 
-image=docker.io/xlrl/radicale
+image=localhost/xlrl/radicale
 manifest="${image}:${version}"
 
 # Start from a fresh manifest list
@@ -79,3 +80,8 @@ podman build \
     .
 
 podman tag "${manifest}" "${image}:latest"
+
+echo "Built ${image}:${version} and :latest (${platforms})"
+echo "Push with:"
+echo "  podman manifest push --all ${image}:${version} docker://<registry>/xlrl/radicale:${version}"
+echo "  podman manifest push --all ${image}:latest docker://<registry>/xlrl/radicale:latest"
